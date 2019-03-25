@@ -31,4 +31,4 @@ git clone https://github.com/dexterteng3/google-books.git
 
 ### Run tests
 
-- Run: "npm run test"
+- Run: "npm test"

@@ -8,7 +8,7 @@ interface IBooksListProps {
 export default function BooksList(props: IBooksListProps) {
     return (<div>
         <table>
-            <tr>
+            <tr id='header-row'>
                 <th>Image</th>
                 <th>Title</th>
                 <th>Author(s)</th>
@@ -17,7 +17,7 @@ export default function BooksList(props: IBooksListProps) {
             </tr>
         {props.items.map((book: IGoogleBook) => {
             return (
-            <tr key={book.id} >
+            <tr id={book.id} key={book.id} >
                 <td>
                     <a href={"https://books.google.com/books?id=" + book.id}>
                         <img src={book.volumeInfo.imageLinks.smallThumbnail} alt='new'/>
