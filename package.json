@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts-ts": "3.1.0"
@@ -10,14 +11,20 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.9.1",
     "@types/jest": "^24.0.11",
     "@types/node": "^11.11.3",
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.2",
-    "typescript": "^3.3.3333"
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "identity-obj-proxy": "^3.0.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
+    "react-test-renderer": "^16.8.5",
+    "typescript": "^3.3.4000"
   }
 }
