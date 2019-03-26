@@ -3,7 +3,7 @@ interface IBookQuery {
     title?: string;
 }
 
-interface IGoogleBooksServiceInterface {
+interface IGoogleBooksService {
     searchBooks(bookQuery: IBookQuery): Promise<IGoogleResponse>;
 }
 
@@ -26,15 +26,15 @@ interface IGoogleBook {
 }
 
 interface IBookInfo {
-    title: string;
-    authors: string[];
-    publisher: string;
-    publishedDate: string;
+    title?: string;
+    authors?: string[];
+    publisher?: string;
+    publishedDate?: string;
     description: string;
     imageLinks: IImageLinks;
 }
 
 interface IImageLinks {
-    smallThumbnail: string;
-    thumbnail: string;
+    smallThumbnail?: string;
+    thumbnail?: string;
 }

@@ -3,8 +3,6 @@ import * as React from 'react';
 
 import SearchBar from '../components/searchBar';
 
-jest.mock('../services/googleBooksService');
-
 it('renders without crashing', () => {
     const mockSetBooks = jest.fn();
     const subject = shallow(<SearchBar setBooks={mockSetBooks}/>, {});
@@ -32,11 +30,43 @@ it('calls service when search is pressed', async () => {
             title: 'title'
         }
     }];
+
+    const response: IGoogleResponse = {
+        data: {
+            items: mockItems,
+            kind: 'book',
+            totalItems: 1
+        }
+    };
+
+    const mockService = {
+        searchBooks: (_: any) => {
+            return Promise.resolve(response);
+        }
+    }
+
     const mockSetBooks = jest.fn();
-    const subject = shallow(<SearchBar setBooks={mockSetBooks} />, {});
-    subject.setState({title: 'lord of the rings', author: 'jrr tolkien'})
+    const subject = shallow(<SearchBar setBooks={mockSetBooks} service={mockService}/>, {});
 
     const button = subject.find('.search-button');
     await button.simulate('click', {preventDefault: jest.fn()}); 
     expect(mockSetBooks).toBeCalledWith(mockItems);
+});
+
+it('gracefully handles a service error', async () => {
+    const mockService = {
+        searchBooks: (_: any) => {
+            return Promise.reject('error');
+        }
+    }
+
+    const mockSetBooks = jest.fn();
+    const subject = shallow(<SearchBar setBooks={mockSetBooks} service={mockService}/>, {});
+    
+    const button = subject.find('.search-button');
+    try {
+        await button.simulate('click', {preventDefault: jest.fn()}); 
+    } catch {
+        expect(mockSetBooks).toBeCalledWith([])
+    }
 });

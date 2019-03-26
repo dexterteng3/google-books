@@ -3,7 +3,8 @@ import * as React from 'react';
 import GoogleBooksService from '../services/googleBooksService';
 
 interface ISearchBarProps {
-    setBooks: (books: IGoogleBook[]) => void;
+    setBooks: (books?: IGoogleBook[]) => void;
+    service?: IGoogleBooksService;
 }
 
 interface ISearchBarState {
@@ -44,12 +45,15 @@ export default class SearchBar extends React.Component<ISearchBarProps, ISearchB
         const uncleanTitle = this.state.title;
         const uncleanAuthor = this.state.author;
 
-        const service = new GoogleBooksService;
+        const service = this.props.service == null ? new GoogleBooksService : this.props.service;
+
         service.searchBooks({
             author: this.splitString(uncleanAuthor),
             title: this.splitString(uncleanTitle)
         }).then(response => {
             this.props.setBooks(response.data.items);
+        }).catch(_ => {
+            this.props.setBooks([]);
         });
     };
 

@@ -5,7 +5,7 @@ import '../styles/App.css';
 import SearchBar from './searchBar';
 
 interface IAppState {
-  books: IGoogleBook[];
+  books?: IGoogleBook[];
 }
 
 export class App extends React.Component<{}, IAppState> {
@@ -33,7 +33,7 @@ export class App extends React.Component<{}, IAppState> {
     );
   }
   
-  public setBooks = (books: IGoogleBook[]) => {
+  public setBooks = (books?: IGoogleBook[]) => {
     this.setState({
       books
     });
