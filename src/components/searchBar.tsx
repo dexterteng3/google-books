@@ -53,7 +53,7 @@ export default class SearchBar extends React.Component<ISearchBarProps, ISearchB
         }).then(response => {
             this.props.setBooks(response.data.items);
         }).catch(_ => {
-            this.props.setBooks([]);
+            this.props.setBooks(undefined);
         });
     };
 

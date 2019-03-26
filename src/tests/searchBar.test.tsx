@@ -67,6 +67,6 @@ it('gracefully handles a service error', async () => {
     try {
         await button.simulate('click', {preventDefault: jest.fn()}); 
     } catch {
-        expect(mockSetBooks).toBeCalledWith([])
+        expect(mockSetBooks).toBeCalledWith(undefined)
     }
 });
