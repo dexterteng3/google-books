@@ -59,10 +59,7 @@ it('shows N/A for undefined fields', () => {
         volumeInfo: {
             authors: undefined,
             description: 'description',
-            imageLinks: {
-                smallThumbnail: undefined,
-                thumbnail: undefined
-            },
+            imageLinks: undefined,
             publishedDate: undefined,
             publisher: undefined,
             title: undefined
@@ -74,9 +71,10 @@ it('shows N/A for undefined fields', () => {
 
     expect(dataRow.length).toBe(5);
     expect(dataRow.get(0).props.children.props.href).toBe('https://books.google.com/books?id=myId');
-    expect(dataRow.get(0).props.children.props.children).toBe('No Image')
+    expect(dataRow.get(0).props.children.props.children.props.src).toBe('https://www.classicposters.com/images/nopicture.gif')
     expect(dataRow.get(1).props.children.props.children).toBe('Unknown Title');
     expect(dataRow.get(1).props.children.props.href).toBe('https://books.google.com/books?id=myId');
     expect(dataRow.get(2).props.children).toBe('N/A');
     expect(dataRow.get(3).props.children).toBe('Unknown Publisher');
-    expect(dataRow.get(4).props.children).toBe('N/A');})
+    expect(dataRow.get(4).props.children).toBe('N/A');
+});

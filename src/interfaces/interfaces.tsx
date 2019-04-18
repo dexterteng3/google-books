@@ -30,8 +30,8 @@ interface IBookInfo {
     authors?: string[];
     publisher?: string;
     publishedDate?: string;
-    description: string;
-    imageLinks: IImageLinks;
+    description?: string;
+    imageLinks?: IImageLinks;
 }
 
 interface IImageLinks {
