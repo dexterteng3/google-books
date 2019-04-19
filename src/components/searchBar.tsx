@@ -42,27 +42,18 @@ export default class SearchBar extends React.Component<ISearchBarProps, ISearchB
     private performSearch(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         event.preventDefault();
 
-        const uncleanTitle = this.state.title;
-        const uncleanAuthor = this.state.author;
+        const title = this.state.title;
+        const author = this.state.author;
 
         const service = this.props.service == null ? new GoogleBooksService : this.props.service;
-
-        service.searchBooks({
-            author: this.splitString(uncleanAuthor),
-            title: this.splitString(uncleanTitle)
-        }).then(response => {
+        
+        service.searchBooks({author, title})
+        .then(response => {
             this.props.setBooks(response.data.items);
         }).catch(_ => {
             this.props.setBooks(undefined);
         });
     };
-
-    private splitString(uncleanString?: string): string {
-        if (uncleanString != null) {
-            return uncleanString.replace(' ', '+');
-        }
-        return '';
-    }
 
     private updateTitle(title: React.ChangeEvent<HTMLInputElement>) {
         this.setState({title: title.target.value});
